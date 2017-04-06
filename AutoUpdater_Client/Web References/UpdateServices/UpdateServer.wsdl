@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetTargetVersionSeq">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="versionSeq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTargetVersionSeqResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTargetVersionSeqResult" type="tns:VersionModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VersionModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="versionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="versionName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="versionSeq" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="releaseTime" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="previousVersionName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFileList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="versionSeq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFileListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileListResult" type="tns:ArrayOfFileModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfFileModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FileModel" nillable="true" type="tns:FileModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FileModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FileId" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RelativePath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileVersionSeq" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileLength" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FileLastTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="rfm" type="tns:RequestFileModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RequestFileModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FileId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartPosition" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ReadFileLength" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="RelativePath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFileResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isDirectoryExists">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="dir" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isDirectoryExistsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isDirectoryExistsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUpdateFileNum">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="startSeq" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="endSeq" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUpdateFileNumResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getUpdateFileNumResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetTargetVersionSeqSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTargetVersionSeq" />
+  </wsdl:message>
+  <wsdl:message name="GetTargetVersionSeqSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTargetVersionSeqResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFileList" />
+  </wsdl:message>
+  <wsdl:message name="GetFileListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="GetFileSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="isDirectoryExistsSoapIn">
+    <wsdl:part name="parameters" element="tns:isDirectoryExists" />
+  </wsdl:message>
+  <wsdl:message name="isDirectoryExistsSoapOut">
+    <wsdl:part name="parameters" element="tns:isDirectoryExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUpdateFileNumSoapIn">
+    <wsdl:part name="parameters" element="tns:getUpdateFileNum" />
+  </wsdl:message>
+  <wsdl:message name="getUpdateFileNumSoapOut">
+    <wsdl:part name="parameters" element="tns:getUpdateFileNumResponse" />
+  </wsdl:message>
+  <wsdl:portType name="UpdateServerSoap">
+    <wsdl:operation name="GetTargetVersionSeq">
+      <wsdl:input message="tns:GetTargetVersionSeqSoapIn" />
+      <wsdl:output message="tns:GetTargetVersionSeqSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFileList">
+      <wsdl:input message="tns:GetFileListSoapIn" />
+      <wsdl:output message="tns:GetFileListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input message="tns:GetFileSoapIn" />
+      <wsdl:output message="tns:GetFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isDirectoryExists">
+      <wsdl:input message="tns:isDirectoryExistsSoapIn" />
+      <wsdl:output message="tns:isDirectoryExistsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUpdateFileNum">
+      <wsdl:input message="tns:getUpdateFileNumSoapIn" />
+      <wsdl:output message="tns:getUpdateFileNumSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UpdateServerSoap" type="tns:UpdateServerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTargetVersionSeq">
+      <soap:operation soapAction="http://tempuri.org/GetTargetVersionSeq" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileList">
+      <soap:operation soapAction="http://tempuri.org/GetFileList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isDirectoryExists">
+      <soap:operation soapAction="http://tempuri.org/isDirectoryExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUpdateFileNum">
+      <soap:operation soapAction="http://tempuri.org/getUpdateFileNum" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="UpdateServerSoap12" type="tns:UpdateServerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetTargetVersionSeq">
+      <soap12:operation soapAction="http://tempuri.org/GetTargetVersionSeq" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFileList">
+      <soap12:operation soapAction="http://tempuri.org/GetFileList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap12:operation soapAction="http://tempuri.org/GetFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isDirectoryExists">
+      <soap12:operation soapAction="http://tempuri.org/isDirectoryExists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUpdateFileNum">
+      <soap12:operation soapAction="http://tempuri.org/getUpdateFileNum" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UpdateServer">
+    <wsdl:port name="UpdateServerSoap" binding="tns:UpdateServerSoap">
+      <soap:address location="http://localhost:50196/UpdateServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="UpdateServerSoap12" binding="tns:UpdateServerSoap12">
+      <soap12:address location="http://localhost:50196/UpdateServer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
